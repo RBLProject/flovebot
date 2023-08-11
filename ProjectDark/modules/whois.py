@@ -140,11 +140,11 @@ add_command_help(
     [
         [
             "info <username/userid/reply>",
-            "dapatkan info pengguna telegram dengan deskripsi lengkap.",
+            "Get telegram user info with full description.",
         ],
         [
             "chatinfo <username/chatid/reply>",
-            "dapatkan info group dengan deskripsi lengkap.",
+            "Get group info with full description.",
         ],
     ],
 )
