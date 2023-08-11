@@ -1,10 +1,5 @@
-# null
-# Copyright (C) 2023 DarkPyro-REV
-# Re-Code by DarkTeam - 2023
-# This file is a part of < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/tracemoepy/DarkPyro-Userbot/blob/main/LICENSE/>.
-# t.me/DiscussionDark & t.me/fuckdvck
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import asyncio
 import os
@@ -130,7 +125,7 @@ async def kang(client: Client, message: Message):
             limit = 50 if (is_video or is_anim) else 120
             if exist.set.count >= limit:
                 pack += 1
-                packname = f"a{user.id}_by_userge_{pack}"
+                packname = f"a{user.id}_darkpyro_{pack}"
                 packnick = f"{custom_packnick} Vol.{pack}"
                 if is_anim:
                     packname += f"_anim{pack}"
@@ -166,9 +161,9 @@ async def kang(client: Client, message: Message):
                     packname += "_video"
                     packnick += " (Video)"
                 await Dark.edit(
-                    "__Membuat Sticker Pack Baru "
+                    "Creating new pack..."
                     + str(pack)
-                    + " Karena Sticker Pack Sudah Penuh__"
+                    + "Please wait..."
                 )
                 await client.send_message("stickers", packname)
                 await asyncio.sleep(2)
@@ -202,14 +197,14 @@ async def kang(client: Client, message: Message):
                 == "Sorry, the file type is invalid."
             ):
                 await Dark.edit(
-                    "**Gagal Menambahkan Sticker, Gunakan @Stickers Bot Untuk Menambahkan Sticker Anda.**"
+                    "Error!"
                 )
                 return
             await client.send_message("Stickers", emoji_)
             await asyncio.sleep(2)
             await client.send_message("Stickers", "/done")
         else:
-            await Dark.edit("__Membuat Sticker Pack Baru__")
+            await Dark.edit("Creating new pack...")
             try:
                 await client.send_message("Stickers", cmd)
             except YouBlockedUser:
@@ -225,7 +220,7 @@ async def kang(client: Client, message: Message):
                 == "Sorry, the file type is invalid."
             ):
                 await Dark.edit(
-                    "**Gagal Menambahkan Sticker, Gunakan @Stickers Bot Untuk Menambahkan Sticker Anda.**"
+                    "Erorr!"
                 )
                 return
             await client.send_message("Stickers", emoji_)
@@ -274,14 +269,14 @@ async def packinfo(client: Client, message: Message):
     for stucker in stickerset.packs:
         if stucker.emoticon not in emojis:
             emojis.append(stucker.emoticon)
-    output = f"""**Sticker Pack Title **: __{stickerset.set.title}__
-**Sticker Pack Short Name **: __{stickerset.set.short_name}__
-**Stickers Count **: __{stickerset.set.count}__
-**Archived **: __{stickerset.set.archived}__
-**Official **: __{stickerset.set.official}__
-**Masks **: __{stickerset.set.masks}__
-**Animated **: __{stickerset.set.animated}__
-**Emojis In Pack **: __{' '.join(emojis)}__
+    output = f"""**Sticker Pack Title**: {stickerset.set.title}
+**Sticker Pack Short Name**: {stickerset.set.short_name}
+**Stickers Count**: {stickerset.set.count}
+**Archived**: {stickerset.set.archived}
+**Official**: {stickerset.set.official}
+**Masks**: {stickerset.set.masks}
+**Animated**: {stickerset.set.animated}
+**Emojis In Pack**: {' '.join(emojis)}
 """
     await rep.edit(output)
 
@@ -311,7 +306,7 @@ async def tinying(client: Client, message: Message):
     reply = message.reply_to_message
     if not (reply and (reply.media)):
         return await edit_or_reply(message, "**Please Reply To Sticker!**")
-    Dark = await edit_or_reply(message, "__Shrink your sticker. . .__")
+    Dark = await edit_or_reply(message, "__Shrinking your sticker. . .__")
     ik = await client.download_media(reply)
     im1 = Image.open("ProjectDark/resources/blank.png")
     if ik.endswith(".tgs"):
@@ -409,10 +404,10 @@ async def memify(client: Client, message: Message):
     os.remove(meme)
 
 
-@Client.on_message(filters.command(["get", "getsticker", "stoi"], cmd) & filters.me)
+@Client.on_message(filters.command(["stoi", "getsticker", "get"], cmd) & filters.me)
 async def stick2png(client: Client, message: Message):
     try:
-        await message.edit("__Downloading . . .__")
+        await message.edit("__Converting to image. . .__")
 
         path = await message.reply_to_message.download()
         with open(path, "rb") as f:
@@ -441,10 +436,10 @@ add_command_help(
     [
         [
             f"`kang` or `{cmd}tikel`",
-            f"Reply `.kang` to sticker to add your pack.",
+            f"Reply `.kang` to sticker add to your pack.",
         ],
-        ["get", "Reply to sticker to get info of pack."],
-        ["stickers <nama sticker>", "Find Sticker Pack."],
+        ["stoi", "Converting stickers to image."],
+        ["stickers <sticker name>", "Find Sticker Pack."],
     ],
 )
 
@@ -454,7 +449,7 @@ add_command_help(
     [
         [
             "mmf Up ; Down",
-            "To add text and conver to sticker.",
+            "To add text and convert to sticker.",
         ],
     ],
 )
@@ -464,8 +459,8 @@ add_command_help(
     "tiny",
     [
         [
-            "tiny <reply ke foto/sticker>",
-            "Minimize a sticker.",
+            "tiny <reply to photo/sticker>",
+            "Minimize a photo/sticker.",
         ],
     ],
 )

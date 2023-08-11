@@ -1,15 +1,10 @@
-# null
-# Copyright (C) 2022 Pyro-ManUserbot
-# Re-Code by DarkTeam - 2023
-# This file is a part of < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/tracemoepy/DarkPyro-Userbot/blob/main/LICENSE/>.
-# t.me/DiscussionDark & t.me/fuckdvck
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import asyncio
 
 from pyrogram import Client, filters
-from pyrogram.enums import ChatType, UserStatus
+from pyrogram.enums import ChatType #, UserStatus
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
@@ -32,9 +27,9 @@ async def inviteee(client: Client, message: Message):
     except BaseException as e:
         await mg.edit(f"__Unable To Add Users! \nTraceBack : {e}__")
         return
-    await mg.edit(f"__Sucessfully Added {len(user_list)} To This Group / Channel!__")
+    await mg.edit(f"__Sucessfully Added {len(user_list)} To This Group/Channel!__")
 
-
+'''
 @Client.on_message(filters.command(["inviteall"], cmd) & filters.me)
 async def inv(client: Client, message: Message):
     Dark = await edit_or_reply(message, "__Processing . . .__")
@@ -58,7 +53,7 @@ async def inv(client: Client, message: Message):
                 mg = await client.send_message(BOTLOG_CHATID, f"**ERROR:** __{e}__")
                 await asyncio.sleep(0.3)
                 await mg.delete()
-
+'''
 
 @Client.on_message(filters.command("invitelink", cmd) & filters.me)
 async def invite_link(client: Client, message: Message):
@@ -81,10 +76,6 @@ add_command_help(
         
         ["invite @username",
         "Invite a user"
-        ],
-        
-        ["inviteall @usernamegc",
-        "Invite all-member from destination group [BE CAREFULL FOR THIS COMMAND! (Not Recommended)",
         ],
     ],
 )

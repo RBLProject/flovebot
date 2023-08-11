@@ -1,10 +1,5 @@
-# null
-# Copyright (C) 2022 Pyro-ManUserbot
-# Re-Code by DarkTeam - 2023
-# This file is a part of < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/tracemoepy/DarkPyro-Userbot/blob/main/LICENSE/>.
-# t.me/DiscussionDark & t.me/fuckdvck
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import asyncio
 import os
@@ -39,14 +34,13 @@ async def alive(client: Client, message: Message):
     av = (
         f"**DarkPyro-Rev v{BOT_VER}**\n"
         f"__Started since {uptime} ago__\n\n"
-        f"<code>{len(modules)}</code> Modules Loaded\n\n"
-        f"<b>Python Version:</b> <code>{python_version()}</code>\n"
-        f"<b>Pyrogram Version:</b> <code>{pyroVer}</code>"
+        f"<code>{len(modules)}</code> Modules has Loaded\n\n"
+        f"<b>Python</b> <code>v{python_version()}</code> | <b>Pyrogram</b> <code>v{pyroVer}</code>"
     )
     try:
         await asyncio.gather(
             msg.delete(),
-            send(
+            msg.send(
                 message.chat.id,
                 reply_to_message_id=ReplyCheck(message),
             ),

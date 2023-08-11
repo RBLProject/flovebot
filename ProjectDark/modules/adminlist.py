@@ -1,10 +1,5 @@
-# null
-# Copyright (C) 2022 Pyro-ManUserbot
-# Re-Code by DarkTeam - 2023
-# This file is a part of < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/tracemoepy/DarkPyro-Userbot/blob/main/LICENSE/>.
-# t.me/DiscussionDark & t.me/fuckdvck
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import html
 
@@ -52,28 +47,28 @@ async def adminlist(client: Client, message: Message):
     badmin.sort()
     totaladmins = len(creator) + len(admin) + len(badmin)
     teks = "**Admins in {}**\n".format(grup.title)
-    teks += "╒═══「 Creator 」\n"
+    teks += "「 The Creator 」\n"
     for x in creator:
-        teks += "│ • {}\n".format(x)
+        teks += "» {}\n".format(x)
         if len(teks) >= 4096:
             await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
             teks = ""
             toolong = True
-    teks += "╞══「 {} Human Administrator 」\n".format(len(admin))
+    teks += "「 {} Total Administrator 」\n".format(len(admin))
     for x in admin:
-        teks += "│ • {}\n".format(x)
+        teks += "» {}\n".format(x)
         if len(teks) >= 4096:
             await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
             teks = ""
             toolong = True
-    teks += "╞══「 {} Bot Administrator 」\n".format(len(badmin))
+    teks += "「 {} Bot Administrator 」\n".format(len(badmin))
     for x in badmin:
-        teks += "│ • {}\n".format(x)
+        teks += "» {}\n".format(x)
         if len(teks) >= 4096:
             await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
             teks = ""
             toolong = True
-    teks += "╘══「 Total {} Admins 」".format(totaladmins)
+    teks += "「 Total {} Admins 」".format(totaladmins)
     if toolong:
         await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
     else:
@@ -147,7 +142,7 @@ async def tag_all_users(client: Client, message: Message):
     if len(message.text.split()) >= 2:
         text = message.text.split(None, 1)[1]
     else:
-        text = "Hi all 🙃"
+        text = "Beeb beeb 👾"
     kek = client.get_chat_members(message.chat.id)
     async for a in kek:
         if not a.user.is_bot:
@@ -188,10 +183,10 @@ async def get_list_bots(client: Client, message: Message):
         if a.user.is_bot:
             bots.append(mention_markdown(a.user.id, nama))
     teks = "**All bots in group {}**\n".format(grup.title)
-    teks += "╒═══「 Bots 」\n"
+    teks += "「 Bots 」\n"
     for x in bots:
-        teks += "│ • {}\n".format(x)
-    teks += "╘══「 Total {} Bots 」".format(len(bots))
+        teks += "» {}\n".format(x)
+    teks += "「 Total {} Bots 」".format(len(bots))
     if replyid:
         await client.send_message(message.chat.id, teks, reply_to_message_id=replyid)
     else:

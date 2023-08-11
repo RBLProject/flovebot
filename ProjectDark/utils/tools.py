@@ -1,10 +1,5 @@
-# null
-# Copyright (C) 2022 Pyro-ManUserbot
-# Re-Code by DarkTeam - 2023
-# This file is a part of < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/tracemoepy/DarkPyro-Userbot/blob/main/LICENSE/>.
-# t.me/DiscussionDark & t.me/fuckdvck
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import asyncio
 import os
@@ -19,7 +14,7 @@ async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = ["s", "m", "Jam", "Hari"]
+    time_suffix_list = ["s", "m", "h", "d"]
 
     while count < 4:
         count += 1

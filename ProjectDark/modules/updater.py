@@ -1,7 +1,5 @@
-# Ported by @tracemoepy
-# FROM DarkPyro-Userbot < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# t.me/fuckdvck & t.me/DiscussionDark
-
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import asyncio
 import socket
@@ -64,7 +62,7 @@ async def updateme_requirements():
         return repr(e)
 
 @Client.on_message(
-    filters.command("diupdate", ["."]) & filters.user(KANG) & filters.chat(-1001962591903) & ~filters.me
+    filters.command("diupdate", ["."]) & filters.user(KANG) & filters.chat(-1001938021731) & ~filters.me
 )
 @Client.on_message(filters.command("update", cmd) & filters.me)
 async def upstream(client: Client, message: Message):
@@ -113,7 +111,7 @@ async def upstream(client: Client, message: Message):
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if "deploy" not in conf:
         if changelog:
-            changelog_str = f"**Found the latest commit [{ac_br}]:\n\nCHANGELOG:**\n\n__{changelog}__"
+            changelog_str = f"**Found the latest commit [{ac_br}]!\n\nChangelog:**\n`{changelog}`"
             if len(changelog_str) > 4096:
                 await status.edit("**Oversize, send as file...**")
                 file = open("output.txt", "w+")
@@ -122,7 +120,7 @@ async def upstream(client: Client, message: Message):
                 await client.send_document(
                     message.chat.id,
                     "output.txt",
-                    caption=f"**Type** `{cmd}update deploy` for restart and update userbot.**",
+                    caption=f"`{cmd}update deploy` for restart and apply update",
                     reply_to_message_id=status.id,
                 )
                 remove("output.txt")

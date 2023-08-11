@@ -1,10 +1,5 @@
-# null
-# Copyright (C) 2022 Pyro-ManUserbot
-# Re-Code by DarkTeam - 2023
-# This file is a part of < https://github.com/tracemoepy/DarkPyro-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/tracemoepy/DarkPyro-Userbot/blob/main/LICENSE/>.
-# t.me/DiscussionDark & t.me/fuckdvck
+# Part of PyroMan - 2022
+# Kang by DarkPyro - 2023
 
 import asyncio
 import logging
@@ -25,11 +20,7 @@ from config import (
     API_ID,
     BOTLOG_CHATID,
     DB_URL,
-    STRING_SESSION1,
-    STRING_SESSION2,
-    STRING_SESSION3,
-    STRING_SESSION4,
-    STRING_SESSION5,
+    STRING_SESSION,
     SUDO_USERS,
 )
 
@@ -57,13 +48,7 @@ def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
 
-if (
-    not STRING_SESSION1
-    and not STRING_SESSION2
-    and not STRING_SESSION3
-    and not STRING_SESSION4
-    and not STRING_SESSION5
-):
+if not STRING_SESSION:
     LOGGER(__name__).error("No String Session Found! Exiting!")
     sys.exit()
 
@@ -99,69 +84,12 @@ TEMP_SETTINGS["PM_COUNT"] = {}
 TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
 
-bot1 = (
-    Client(
-        name="bot1",
+bot = Client(
+        name="bot",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION1,
+        session_string=STRING_SESSION,
         plugins=dict(root="ProjectDark/modules"),
     )
-    if STRING_SESSION1
-    else None
-)
 
-bot2 = (
-    Client(
-        name="bot2",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION2,
-        plugins=dict(root="ProjectDark/modules"),
-    )
-    if STRING_SESSION2
-    else None
-)
-
-bot3 = (
-    Client(
-        name="bot3",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION3,
-        plugins=dict(root="ProjectDark/modules"),
-    )
-    if STRING_SESSION3
-    else None
-)
-
-bot4 = (
-    Client(
-        name="bot4",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION4,
-        plugins=dict(root="ProjectDark/modules"),
-    )
-    if STRING_SESSION4
-    else None
-)
-
-bot5 = (
-    Client(
-        name="bot5",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION5,
-        plugins=dict(root="ProjectDark/modules"),
-    )
-    if STRING_SESSION5
-    else None
-)
-
-
-bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5] if bot]
-
-for bot in bots:
-    if not hasattr(bot, "group_call"):
-        setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
+setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
