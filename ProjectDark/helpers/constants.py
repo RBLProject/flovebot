@@ -84,11 +84,11 @@ class Weebify:
 
 class WWW:
     SpeedTest = (
-        "Speedtest started at __{start}__\n\n"
+        "Speedtest started\nat {start}\n\n"
         "Ping: {ping}ms\n"
         "Download: {download}\n"
         "Upload: {upload}\n"
-        "ISP: `{isp}`"
+        "ISP: {isp}"
     )
     
     NearestDC = """

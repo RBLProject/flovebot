@@ -57,7 +57,7 @@ async def voicelang(client: Client, message: Message):
     try:
         gTTS("tes", lang=lang)
     except Exception:
-        await edit_or_reply(message, "Wrong Language id !")
+        await edit_or_reply(message, "Wrong Language id!")
         lang = temp
         return
     await edit_or_reply(

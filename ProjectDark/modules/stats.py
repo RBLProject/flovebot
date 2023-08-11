@@ -43,14 +43,15 @@ async def stats(client: Client, message: Message):
 
     end = datetime.now()
     ms = (end - start).seconds
-    await Dark.edit_text(
-        """__Your Stats Obtained in {} seconds`
-`You have {} Private Messages.`
-`You are in {} Groups.`
-`You are in {} Super Groups.`
-`You Are in {} Channels.`
-`You Are Admin in {} Chats.`
-`Bots = {}__""".format(
+    await Dark.edit_text("""
+Your Stats Obtained in {} seconds
+You have {} Private Messages
+You are in {} Groups
+You are in {} Super Groups
+You Are in {} Channels
+You Are Admin in {} Chats
+Bots: {}
+""".format(
             ms, u, g, sg, c, a_chat, b
         )
     )

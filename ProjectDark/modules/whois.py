@@ -42,23 +42,21 @@ async def who_is(client: Client, message: Message):
             status = "-"
         dc_id = f"{user.dc_id}" if user.dc_id else "-"
         common = await client.get_common_chats(user.id)
-        out_str = f"""<b>USER INFORMATION:</b>
+        out_str = f"""
+<a href='tg://user?id={user.id}'><b>User Information</b></a>
 
-<b>User ID:</b> <code>{user.id}</code>
-<b>First Name:</b> {first_name}
-<b>Last Name:</b> {last_name}
-<b>Username:</b> {username}
-<b>DC ID:</b> <code>{dc_id}</code>
-<b>Is Bot:</b> <code>{user.is_bot}</code>
-<b>Is Scam:</b> <code>{user.is_scam}</code>
-<b>Restricted:</b> <code>{user.is_restricted}</code>
-<b>Verified:</b> <code>{user.is_verified}</code>
-<b>Premium:</b> <code>{user.is_premium}</code>
-<b>User Bio:</b> {bio}
+User ID: <code>{user.id}</code>
+First Name: {first_name}
+Last Name: {last_name}
+Last Seen: {status}
+Username: {username}
+Bio:
+{bio}
 
-<b>Same groups seen:</b> {len(common)}
-<b>Last Seen:</b> <code>{status}</code>
-<b>User permanent link:</b> <a href='tg://user?id={user.id}'>{fullname}</a>
+Data Center: {dc_id}
+Verified: {user.is_verified}
+Premium: {user.is_premium}
+
 """
         photo_id = user.photo.big_file_id if user.photo else None
         if photo_id:
@@ -103,22 +101,20 @@ async def chatinfo_handler(client: Client, message: Message):
         username = f"@{chat.username}" if chat.username else "-"
         description = f"{chat.description}" if chat.description else "-"
         dc_id = f"{chat.dc_id}" if chat.dc_id else "-"
-        out_str = f"""<b>CHAT INFORMATION:</b>
+        out_str = f"""
+<b>{chat.title}</b> ({type})
+Total {chat.members_count} Members
 
-<b>Chat ID:</b> <code>{chat.id}</code>
-<b>Title:</b> {chat.title}
-<b>Username:</b> {username}
-<b>Type:</b> <code>{type}</code>
-<b>DC ID:</b> <code>{dc_id}</code>
-<b>Is Scam:</b> <code>{chat.is_scam}</code>
-<b>Is Fake:</b> <code>{chat.is_fake}</code>
-<b>Verified:</b> <code>{chat.is_verified}</code>
-<b>Restricted:</b> <code>{chat.is_restricted}</code>
-<b>Protected:</b> <code>{chat.has_protected_content}</code>
+Chat ID: <code>{chat.id}</code>
+Username: {username}
+Data Center: {dc_id}
 
-<b>Total members:</b> <code>{chat.members_count}</code>
-<b>Description:</b>
-<code>{description}</code>
+Verified: {chat.is_verified}
+Restricted: {chat.is_restricted}
+Protected: {chat.has_protected_content}
+
+Description:
+{description}
 """
         photo_id = chat.photo.big_file_id if chat.photo else None
         if photo_id:
