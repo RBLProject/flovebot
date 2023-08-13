@@ -10,7 +10,7 @@ gtts
 lottie
 psycopg2-binary
 pymediainfo
-pyrogram
+pyrofork
 pytgcalls==3.0.0.dev22
 python-dotenv
 requests
