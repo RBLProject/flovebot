@@ -4,6 +4,7 @@
 import asyncio
 import requests
 
+from io import BytesIO
 from base64 import b64decode
 from pyrogram import Client, filters, errors
 from pyrogram.types import Message
