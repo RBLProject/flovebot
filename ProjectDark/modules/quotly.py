@@ -125,7 +125,7 @@ add_command_help(
             "Make a message into a sticker with the custom background color given.",
         ],
         [
-            f"fq or `{cmd}fakeq`",
+            f"fq @username text",
             "Make fake quote.",
         ],
     ],
