@@ -3,6 +3,7 @@ Pillow==9.5.0
 aiohttp
 asyncio
 bs4
+emoji==1.6.0
 gitpython
 google
 gpytranslate
