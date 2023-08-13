@@ -44,31 +44,29 @@ async def quotly(client: Client, message: Message):
                 return await message.edit("**ERRO!**")
 
 
+@Client.on_message(filters.me & filters.command(["fq", "fakeq"], cmd))
 async def fake_quote_cmd(client: Client, message: Message):
     send_for_me = "!me" in message.command or "!ls" in message.command
 
     if len(message.command) < 3:
-        return await message.edit(f"{message.text} <username> <pesan>")
+        return await message.edit(f"{message.text} <username> <message>")
 
     target_user = message.command[1]
     if not target_user.startswith("@"):
-        return await message.edit("format username salah")
+        return await message.edit("Invalid username format.")
     target_user = target_user[1:]
 
     try:
         user = await client.get_users(target_user)
     except errors.exceptions.bad_request_400.UsernameNotOccupied:
-        return await message.edit("username tidak ditemukan")
+        return await message.edit("Not found a username.")
     except IndexError:
-        return await message.edit("jangan gunakan username CH/GROUP")
-
-    if user.id in DEVS:
-        return await message.reply("LOL!!")
+        return await message.edit("Only for user.")
 
     fake_quote_text = " ".join(message.command[2:])
 
     if not fake_quote_text:
-        return await message.edit("Pesan kosong")
+        return await message.edit("Empty message.")
 
     q_message = await client.get_messages(message.chat.id, message.id)
     q_message.text = fake_quote_text
@@ -82,7 +80,7 @@ async def fake_quote_cmd(client: Client, message: Message):
 
     if send_for_me:
         await message.delete()
-        message = await client.send_message("me", "Memproses...")
+        message = await client.send_message("me", "Processing...")
     else:
         await message.edit("Loading...")
 
@@ -97,13 +95,13 @@ async def fake_quote_cmd(client: Client, message: Message):
     response = requests.post(url, json=params)
     if not response.ok:
         return await message.edit(
-            f"<b>GAGAL!</b>\n" f"<code>{response.text}</code>"
+            f"<b>Error!</b>\n" f"<code>{response.text}</code>"
         )
 
     resized = resize_image(
         BytesIO(response.content), img_type="webp"
     )
-    await message.edit("mengirim sticker...")
+    await message.edit("Sending...")
 
     try:
         func = client.send_sticker
@@ -125,6 +123,10 @@ add_command_help(
         [
             f"q <color> or {cmd}quotly <color>",
             "Make a message into a sticker with the custom background color given.",
+        ],
+        [
+            f"fq or `{cmd}fakeq`",
+            "Make fake quote.",
         ],
     ],
 )
